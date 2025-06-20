@@ -3,4 +3,6 @@ const pool = require('./db');
 
 const dogRoute = require('./routes.dogs');
 const walkeresRoute = require('./routes.walkers');
-const dogRoute = require('./routes.walker');
+const walkRequestRoute = require('./routes.walkrequest');
+
+const app = express(;)
