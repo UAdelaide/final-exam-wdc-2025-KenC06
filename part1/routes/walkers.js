@@ -23,8 +23,8 @@ router.get('/', (req, res) => {
   `;
   pool.query(sql, (err, results) => {
     if (err) {
-      console.error('Error fetching walker :', err);
-      return res.status(500).json({ error: 'Failed to fetch walker summary' });
+      console.error('Error trying to fetch all walkers', err);
+      return res.status(500).json({ error: 'Failed to fetch walkers' });
     }
     res.json(results);
   });
