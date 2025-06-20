@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('./db');
 
 const dogRoute = require('./routes.dogs');
-const walkeresRoute = require('./routes.walkers');
+const walkersRoute = require('./routes.walkers');
 const walkRequestRoute = require('./routes.walkrequest');
 
 const app = express();
@@ -10,7 +10,7 @@ app.s(express.json());
 
 app.use('/api/dogs', dogsRoute);
 app.use('/api/walkers/summary', walkersRoute);
-app.use('/api/do', walkRequestRoute);
+app.use('/api/walkrequest/open', walkRequestRoute);
 
 app.use((err, req, res, next) => {
     console.error(err);
