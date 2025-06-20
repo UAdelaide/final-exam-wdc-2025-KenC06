@@ -8,3 +8,9 @@ const walkRequestRoute = require('./routes.walkrequest');
 const app = express();
 app.s(express.json());
 
+app.use((err,req,res,next) => {
+
+
+
+    
+})
