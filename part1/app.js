@@ -8,9 +8,9 @@ const walkRequestRoute = require('./routes/walkrequest');
 const app = express();
 app.use(express.json());
 
-app.use('/api/dog', dogsRoute);
+app.use('/api/dogs', dogsRoute);
 app.use('/api/walkers/summary', walkersRoute);
-app.use('/api/walkrequest/open', walkRequestRoute);
+app.use('/api/walkrequests/open', walkRequestRoute);
 
 app.use((err, req, res, next) => {
     console.error(err);
