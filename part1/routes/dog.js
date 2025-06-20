@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   `;
   pool.query(sql, (err, results) => {
     if (err) {
-      console.error('Error fetching dogs:', err);
+      console.error('Error trying to fetch dogs:', err);
       return res.status(500).json({ error: 'Failed to fetch dogs' });
     }
     res.json(results);
