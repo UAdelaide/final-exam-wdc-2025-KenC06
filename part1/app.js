@@ -3,12 +3,12 @@ const pool = require('./db');
 
 const dogsRoute = require('./routes.dog');
 const walkersRoute = require('./routes.walkers');
-const walkRequestRoute = require('./routes.walkrequest');
+const walkRequestRoute = require('./routes.walkreques');
 
 const app = express();
 app.s(express.json());
 
-app.use('/api/dogs', dogsRoute);
+app.use('/api/dog', dogsRoute);
 app.use('/api/walkers/summary', walkersRoute);
 app.use('/api/walkrequest/open', walkRequestRoute);
 
