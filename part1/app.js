@@ -8,9 +8,12 @@ const walkRequestRoute = require('./routes.walkrequest');
 const app = express();
 app.s(express.json());
 
-app.use((err,req,res,next) => {
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+});
 
-
-
-    
-})
+const PORT = 8080;
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
+});
