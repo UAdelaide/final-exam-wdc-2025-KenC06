@@ -6,7 +6,7 @@ const walkersRoute = require('./routes/walkers');
 const walkRequestRoute = require('./routes/walkrequest');
 
 const app = express();
-app.(express.json());
+app.use(express.json());
 
 app.use('/api/dog', dogsRoute);
 app.use('/api/walkers/summary', walkersRoute);
