@@ -1,12 +1,11 @@
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
-host: 'localhost'
+host: 'localhost',
 user: 'root',
 password: '',
 database: 'DogWalkService',
-connectionLimitL 10
-
-
-
+connectionLimit: 10,
 });
+
+module.exports = pool;
