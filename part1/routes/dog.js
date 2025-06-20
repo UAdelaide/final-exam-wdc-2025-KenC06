@@ -13,7 +13,11 @@ router.get('/', async (req, res) => {
       ON d.owner_id = u.user_id
   `;
  try{
-  const [rows] = await 
+  const [rows] = await pool.query(sql);
+  res.json(rows);
+ } catch (err) {
+
+  
  }
 
 module.exports = router;
