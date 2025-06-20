@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../db');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const sql = `
     SELECT
       wr.request_id,
@@ -19,15 +19,13 @@ router.get('/', (req, res) => {
     WHERE wr.status = 'open'
   `;
 
-  pool.query(sql, (err, results) => {
-    if (err) {
-      console.error('Error trying to fetch all walk requests:', err);
-      return res
-        .status(500)
-        .json({ error: 'Failed to fetch walk requests' });
-    }
-    res.json(results);
-  });
+  try{
+  const [rows] = await pool.query(sql);
+  res.json(rows);
+ } catch (err) {
+  console.error('Error fetching dogs', err);
+  res.status(500).json({error: 'Failed to fetch dogs'});
+ }
 });
 
 module.exports = router;
