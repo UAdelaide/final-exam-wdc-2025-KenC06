@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('./db');
 
-const dogsRoute = require('./routes.dogs');
+const dogsRoute = require('./routes.dog');
 const walkersRoute = require('./routes.walkers');
 const walkRequestRoute = require('./routes.walkrequest');
 
