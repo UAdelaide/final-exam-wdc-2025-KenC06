@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walk Service</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <style>
-    body{
-    background: url('https://picsum.photos/seed/pattern/800/600') repeat;
-    font-family: Comic Sans cursive;
-    color: #888;
-    }
-    h1{font-size: 5vh;}
-    .tiny-button{
-        font-size: 8px;
-        padding: 2px 4px;
-        margin: 2px;
-    }
+        body {
+            background: url('https://picsum.photos/seed/pattern/800/600') repeat;
+            font-family: Comic Sans cursive;
+            color: #888;
+        }
 
-    .sidebar {
-      float: right;
-      width: 10px;
-      height: 500px;
-      background: pink;
-    }
+        h1 {
+            font-size: 5vh;
+        }
 
-    .marquee{
-        width:200px;
-        background: #0f0;
-    }
+        .tiny-button {
+            font-size: 8px;
+            padding: 2px 4px;
+            margin: 2px;
+        }
+
+        .sidebar {
+            float: right;
+            width: 10px;
+            height: 500px;
+            background: pink;
+        }
+
+        .marquee {
+            width: 200px;
+            background: #0f0;
+        }
     </style>
 </head>
+
 <body>
-    <div id ="app"></div>
+    <div id="app"></div>
     <h1>Dog of the day</h1>
     <div class="marquee"> Welcome to the dog walk service website begin by clicking something</div>
     <img v-bind:src="dogImageUrl" />
@@ -43,21 +49,28 @@
     <button class="tiny-button" @click="alert('setting')">Settings</button>
 
     <div style="margin-top:50px;">
-      <div @mouseover="showMenu = true" @mouseleave="showMenu = false">
-        Hover for menu
-        <ul v-if="showMenu" style="list-style:none; padding:0;">
-          <li><a href="#">Link A</a></li>
-          <li><a href="#">Link B</a></li>
-          <li><a href="#">Link C</a></li>
-        </ul>
-      </div>
+        <div @mouseover="showMenu = true" @mouseleave="showMenu = false">
+            Hover for menu
+            <ul v-if="showMenu" style="list-style:none; padding:0;">
+                <li><a href="#">Link A</a></li>
+                <li><a href="#">Link B</a></li>
+                <li><a href="#">Link C</a></li>
+            </ul>
+        </div>
     </div>
 
     <script>
+        const { createApp } = Vue;
+        createApp({
 
+
+
+
+        })
 
 
     </script>
 
 </body>
+
 </html>
