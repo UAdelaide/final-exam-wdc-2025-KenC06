@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
   res.json(rows);
  } catch (err) {
   console.error('Error fetching dogs', err);
-  res.status(500).json({error: })
+  res.status(500).json({error: 'Failed to fetch dogs'});
  }
-
+});
 module.exports = router;
