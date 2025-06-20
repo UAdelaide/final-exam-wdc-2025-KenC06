@@ -21,13 +21,13 @@ router.get('/', async (req, res) => {
     WHERE u.role = 'walker'
     GROUP BY u.username
   `;
-  pool.query(sql, (err, results) => {
-    if (err) {
-      console.error('Error trying to fetch all walkers', err);
-      return res.status(500).json({ error: 'Failed to fetch walkers' });
-    }
-    res.json(results);
-  });
+  try{
+  const [rows] = await pool.query(sql);
+  res.json(rows);
+ } catch (err) {
+  console.error('Error fetching dogs', err);
+  res.status(500).json({error: 'Failed to fetch dogs'});
+ }
 });
 
 module.exports = router;
