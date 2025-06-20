@@ -23,8 +23,8 @@ router.get('/', async (req, res) => {
   const [rows] = await pool.query(sql);
   res.json(rows);
  } catch (err) {
-  console.error('Error fetching dogs', err);
-  res.status(500).json({error: 'Failed to fetch dogs'});
+  console.error('Error fetching open walk requests', err);
+  res.status(500).json({error: 'Failed to fetch open walk request'});
  }
 });
 
