@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
   const [rows] = await pool.query(sql);
   res.json(rows);
  } catch (err) {
+  consoleerror('Error fetching dogs', err);
 
-  
  }
 
 module.exports = router;
