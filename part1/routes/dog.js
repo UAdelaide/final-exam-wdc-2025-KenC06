@@ -12,13 +12,8 @@ router.get('/', async (req, res) => {
     JOIN Users u
       ON d.owner_id = u.user_id
   `;
-  pool.query(sql, (err, results) => {
-    if (err) {
-      console.error('Error trying to fetch dogs:', err);
-      return res.status(500).json({ error: 'Failed to fetch dogs' });
-    }
-    res.json(results);
-  });
-});
+ try{
+  const [rows] = await 
+ }
 
 module.exports = router;
