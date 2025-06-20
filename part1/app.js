@@ -9,8 +9,8 @@ const app = express();
 app.s(express.json());
 
 app.use('/api/dogs', dogsRoute);
-app.use('/api/dogs', dogsRoute);
-app.use('/api/dogs', dogsRoute);
+app.use('/api/walkers', walkersRoute);
+app.use('/api/do', dogsRoute);
 
 app.use((err, req, res, next) => {
     console.error(err);
