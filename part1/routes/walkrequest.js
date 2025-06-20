@@ -21,10 +21,10 @@ router.get('/', (req, res) => {
 
   pool.query(sql, (err, results) => {
     if (err) {
-      console.error('Error fetching open walk requests:', err);
+      console.error('Error trying to fetch all walk requests:', err);
       return res
         .status(500)
-        .json({ error: 'Failed to fetch open walk requests' });
+        .json({ error: 'Failed to fetch walk requests' });
     }
     res.json(results);
   });
