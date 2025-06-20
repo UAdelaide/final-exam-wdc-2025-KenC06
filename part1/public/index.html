@@ -39,46 +39,45 @@
 
 <body>
     <div id="app">
-    <h1>Dog of the day</h1>
-    <div class="marquee"> Welcome to the dog walk service website begin by clicking something</div>
-    <img v-bind:src="dogImageUrl" />
-    <p> Name: <strong>Fodd</strong> | Breed: Labrador Retriever | Age: 4 | Tricks: None </p>
+        <h1>Dog of the day</h1>
+        <div class="marquee"> Welcome to the dog walk service website begin by clicking something</div>
+        <img v-bind:src="dogImageUrl" />
+        <p> Name: <strong>Fodd</strong> | Breed: Labrador Retriever | Age: 4 | Tricks: None </p>
 
-    <button class="tiny-button" @click="alert('booked')">Book to walk!</button>
-    <button class="tiny-button" @click="alert('Viewed this profile!')">Profile</button>
-    <button class="tiny-button" @click="alert('setting')">Settings</button>
+        <button class="tiny-button" @click="alert('booked')">Book to walk!</button>
+        <button class="tiny-button" @click="alert('Viewed this profile!')">Profile</button>
+        <button class="tiny-button" @click="alert('setting')">Settings</button>
 
-    <div style="margin-top:50px;">
-        <div @mouseover="showMenu = true" @mouseleave="showMenu = false">
-            Hover for menu
-            <ul v-if="showMenu" style="list-style:none; padding:0;">
-                <li><a href="#">Link A</a></li>
-                <li><a href="#">Link B</a></li>
-                <li><a href="#">Link C</a></li>
-            </ul>
+        <div style="margin-top:50px;">
+            <div @mouseover="showMenu = true" @mouseleave="showMenu = false">
+                Hover for menu
+                <ul v-if="showMenu" style="list-style:none; padding:0;">
+                    <li><a href="#">Link A</a></li>
+                    <li><a href="#">Link B</a></li>
+                    <li><a href="#">Link C</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-<div class="sidebar" title="Sidebar"></div>
-  </div>
+        <div class="sidebar" title="Sidebar"></div>
     </div>
 
     <script>
         const { createApp } = Vue;
         createApp({
-            data(){
+            data() {
                 return {
                     dogImageUrl: '',
                     showMenu: false
                 }
             },
-            mounted(){
+            mounted() {
                 fetch('https://dog.ceo/api/breeds/image/random')
-                .then(res=>res.json())
-                .then(json=>{
-                    this.dogImageUrl = json.message;
-                })
-                .catch(() => this.dogImageUrl = '');
+                    .then(res => res.json())
+                    .then(json => {
+                        this.dogImageUrl = json.message;
+                    })
+                    .catch(() => this.dogImageUrl = '');
             }
         }).mount('#app')
     </script>
