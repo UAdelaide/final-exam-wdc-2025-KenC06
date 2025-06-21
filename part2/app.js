@@ -5,11 +5,11 @@ const session = require('express-session');
 require('dotenv').config();
 const app = express();
 
+// session
 app.use(session({
+    secret
 
-
-}))
-
+}));
 
 // Middleware
 app.use(express.json());
