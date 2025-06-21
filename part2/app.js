@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 
-// — Session middleware —
+// session middle ware
 app.use(session({
     secret: process.env.SESSION_SECRET || 'forsession',
     resave: false,
@@ -13,11 +13,10 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 }
 }));
 
-// — Body + static —
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// — Routes —
+// routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 const allDogsRouter = require('../part1/routes/dog');
