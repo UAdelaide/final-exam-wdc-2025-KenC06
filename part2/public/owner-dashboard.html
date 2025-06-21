@@ -115,6 +115,7 @@
           }
         }
 
+        //calls logout in userRoutes.js
         async function logout() {
           await fetch('/api/users/logout', { method: 'POST' });
           window.location.href = '/';
@@ -128,7 +129,7 @@
           message,
           error,
           submitWalkRequest,
-          logout
+          logout //returns logout
         };
       }
     }).mount('#app');
