@@ -92,7 +92,7 @@
           window.location.href = '/';
         }
 
-        onMounted(() => {
+        onMounted(async() => {
           loadWalkRequests();
           await getCurrentUser();
           loadWalkRequests();
