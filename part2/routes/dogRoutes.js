@@ -21,3 +21,5 @@ try {
     res.status(500).json({ error: 'unable to fetch dogs' });
 }
 });
+
+module.exports=router;
