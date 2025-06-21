@@ -4,15 +4,21 @@
   <meta charset="UTF-8">
   <title>Owner Dashboard - Dog Walking Service</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body class="bg-light">
   <div id="app" class="container py-4">
-    <h1 class="mb-4 text-primary">Owner Dashboard</h1>
+
+    <!-- header with logout -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="text-primary">Owner Dashboard</h1>
-      <button type="button" class="btn btn-outline-secondary" @click="logout">Logout</button>
+      <button type="button" class="btn btn-outline-secondary" @click="logout">
+        Logout
+      </button>
     </div>
 
     <!-- Walk request form -->
@@ -79,10 +85,9 @@
           duration_minutes: '',
           location: ''
         });
-
-        const walks = ref([]);
+        const walks   = ref([]);
         const message = ref('');
-        const error = ref('');
+        const error   = ref('');
 
         async function loadWalks() {
           try {
@@ -101,17 +106,9 @@
               body: JSON.stringify(form.value)
             });
             const result = await res.json();
-
             if (!res.ok) throw new Error(result.error || 'Error submitting walk request');
-
             message.value = result.message;
-            error.value = '';
-            form.value = {
-              dog_id: '',
-              requested_time: '',
-              duration_minutes: '',
-              location: ''
-            };
+            form.value = { dog_id: '', requested_time: '', duration_minutes: '', location: '' };
             loadWalks();
           } catch (err) {
             error.value = err.message;
@@ -119,23 +116,21 @@
           }
         }
 
-        onMounted(() => {
-          loadWalks();
-        });
+        async function logout() {
+          await fetch('/api/users/logout', { method: 'POST' });
+          window.location.href = '/';
+        }
+
+        onMounted(loadWalks);
 
         return {
           form,
           walks,
           message,
           error,
-          submitWalkRequest
+          submitWalkRequest,
+          logout
         };
-
-        methods: {
-          async logout(){
-            await fetch('/api/users/logout', {method: 'POST'});
-            window.location.href = '/'
-          }
       }
     }).mount('#app');
   </script>
