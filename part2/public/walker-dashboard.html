@@ -60,6 +60,11 @@
           }
         }
 
+        async function getCurrentUser(){
+          const res = await fetch('/api/users/me');
+          if()
+        }
+
         async function applyToWalk(requestId) {
           try {
             const res = await fetch(`/api/walks/${requestId}/apply`, {
