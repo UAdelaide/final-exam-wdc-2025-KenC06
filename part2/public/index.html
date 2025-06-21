@@ -38,7 +38,8 @@
       method:{
         async login(){
           const res =a await fetch('/users/login',{
-
+            method: 'POST',
+            header: { 'Content-Type'L 'application.json'}
 
           })
         }
