@@ -18,7 +18,7 @@
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
-    // login
+    <!--login-->
     <form @submit.prevent="login">
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
@@ -58,9 +58,9 @@
       },
       methods: {
         async login() {
-          const res = await fetch('/api/users/login', {           // ← note the /api/users prefix
+          const res = await fetch('/api/users/login', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },      // ← headers (plural), correct MIME
+            headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify({
               email: this.email,
               password: this.password
