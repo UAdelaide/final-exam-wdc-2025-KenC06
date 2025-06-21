@@ -7,3 +7,7 @@ router.get('/', async (req,res) => {
         return res.status(401).json({error: 'Not authenticated'});
     }
 }
+try {
+
+const[ rows]
+}
