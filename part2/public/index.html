@@ -43,7 +43,7 @@
             body: JSON.stringify({email: this.email, password: this.password})
            });
            if(!res.ok) return alert('Login failed');
-           const user = await res.json();
+           const user = await res.json();a
            window.location = user.role === 'owner'
             ? '/owner-dashboard.html'
             : '/walker-dashboard.html';
