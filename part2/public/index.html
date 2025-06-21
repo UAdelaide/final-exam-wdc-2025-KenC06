@@ -37,18 +37,18 @@
       },
       method:{
         async login(){
-          const res =a await fetch('/users/login',{
+          const res = await fetch('/users/login',{
             method: 'POST',
             header: { 'Content-Type': 'application.json'},
             body: JSON.stringify({email: this.email, password: this.password})
            });
            if(!res.ok) return alert('Login failed');
            const user = await res.json();
-           window 
+           window.location = user.role === 'owner'
+            ? '/owner-dashboard.html'
+            : '/walker-dashboard.html';
         }
       }
-
-
     }).mount('#app');
   </script>
 
