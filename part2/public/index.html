@@ -44,6 +44,27 @@
 
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
+
+    <h2 class="mb-3">All Dogs</h2>
+    <table class="table table-striped" v-if="dogs.length">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="dog in dogs" :key="dog.dog_name">
+          <td><img :src="dog.photo" width="80" alt="dog photo" /></td>
+          <td>{{ dog.dog_name }}</td>
+          <td>{{ dog.size }}</td>
+          <td>{{ dog.owner_username }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p v-else>No dogs to show.</p>
   </div>
 
   <script>
