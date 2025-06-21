@@ -135,7 +135,11 @@
           }
         }
 
-        onMounted(loadWalks);
+        onMounted(() => {
+
+          loadWalks
+
+        });
 
         return {
           form,
