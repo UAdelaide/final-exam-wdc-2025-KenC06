@@ -6,7 +6,7 @@ const SESSION_SECRET = 'forsession';
 require('dotenv').config();
 const app = express();
 
-// session
+// session middle ware
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
