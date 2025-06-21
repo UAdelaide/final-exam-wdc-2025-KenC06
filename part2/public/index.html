@@ -98,7 +98,7 @@
           }
         },
 
-        // new: fetch all dogs, then attach a random Dog CEO image to each
+        // new fetch all dogs then give it a random image
         async loadAllDogs() {
           const res  = await fetch('/api/all-dogs');
           const list = await res.json();
