@@ -105,7 +105,15 @@
 
         async loadAllDogs(){
           const res = await fetch('/api/all-dogs');
-          
+          const list = await res.json();
+          const withPhotos = await Promise.all(
+            list.map(async dog => {
+              const r = await fetch('https://dog.ceo/api/breeds/image/random');
+              const { message: photo } = await r.json();
+              return { ...dog, photo };
+            })
+          );
+          this.dogs = withPhotos;
         }
 
       }
