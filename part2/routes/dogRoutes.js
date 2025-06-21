@@ -14,5 +14,9 @@ const[ rows ] = await db.query(
          FROM Dogs
         WHERE owner_id = ?`,
       [req.session.user.user_id]
-      
+);
+res.json(rows);
+}catch(err){
+    console.error(err);
+    res.status(500)
 }
