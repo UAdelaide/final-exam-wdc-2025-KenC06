@@ -43,7 +43,7 @@
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
 
-    <!--all-dogs table-->
+    <!-- all-dogs table -->
     <h2 class="mb-3">All Dogs</h2>
     <table class="table table-striped" v-if="dogs.length">
       <thead>
@@ -73,35 +73,37 @@
       data() {
         return {
           message: 'Welcome to the Dog Walking Service!',
-          email: '',
+          email:    '',
           password: '',
-          dogs: []
+          dogs:     []
         };
       },
       methods: {
-        // existing login
+        // login unchanged
         async login() {
           const res = await fetch('/api/users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              email: this.email,
-              password: this.password
-            })
+            body: JSON.stringify({ email: this.email, password: this.password })
           });
           if (!res.ok) return alert('Login failed');
           const user = await res.json();
-          if (user.role === 'owner') {
-            window.location.href = '/owner-dashboard.html';
-          } else {
-            window.location.href = '/walker-dashboard.html';
-          }
+          window.location.href = user.role === 'owner'
+            ? '/owner-dashboard.html'
+            : '/walker-dashboard.html';
         },
 
-        // new fetch all dogs then give it a random image
+        // fetch all dogs + Dog CEO photos
         async loadAllDogs() {
-          const res  = await fetch('/api/allDogs');
+          // 1) get all dogs with owner_username
+          const res  = await fetch('/api/all-dogs');
+          if (!res.ok) {
+            console.error('Failed to load dogs');
+            return;
+          }
           const list = await res.json();
+
+          // 2) attach a random photo to each
           const withPhotos = await Promise.all(
             list.map(async dog => {
               const r = await fetch('https://dog.ceo/api/breeds/image/random');
@@ -109,11 +111,12 @@
               return { ...dog, photo };
             })
           );
+
           this.dogs = withPhotos;
         }
       },
       mounted() {
-        this.loadAllDogs();  // will run when the page loads
+        this.loadAllDogs();
       }
     }).mount('#app');
   </script>
