@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const SESSION_SECRET = 'forsession'
 
 require('dotenv').config();
 const app = express();
 
 // session
 app.use(session({
-    secretL
+    secret: SESSION_SECRET,
     resave: false,
   saveUninitialized: false,
   cookie: {
