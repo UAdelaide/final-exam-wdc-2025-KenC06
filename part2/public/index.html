@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Dog Walking Service</title>
@@ -13,13 +12,12 @@
 </head>
 
 <body class="bg-light">
-
   <div id="app" class="container py-5">
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
-    <!--login-->
-    <form @submit.prevent="login">
+    <!-- login form -->
+    <form @submit.prevent="login" class="mb-5">
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input
@@ -45,6 +43,7 @@
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
 
+    <!-- all-dogs table -->
     <h2 class="mb-3">All Dogs</h2>
     <table class="table table-striped" v-if="dogs.length">
       <thead>
@@ -57,7 +56,7 @@
       </thead>
       <tbody>
         <tr v-for="dog in dogs" :key="dog.dog_name">
-          <td><img src="dog.photo" width="80" alt="dog photo" /></td>
+          <td><img :src="dog.photo" width="80" alt="dog photo" /></td>
           <td>{{ dog.dog_name }}</td>
           <td>{{ dog.size }}</td>
           <td>{{ dog.owner_username }}</td>
@@ -69,16 +68,18 @@
 
   <script>
     const { createApp } = Vue;
+
     createApp({
       data() {
         return {
           message: 'Welcome to the Dog Walking Service!',
           email: '',
           password: '',
-          dog: []
+          dogs: []            // ← hold all-dogs + photos
         };
       },
       methods: {
+        // existing login
         async login() {
           const res = await fetch('/api/users/login', {
             method: 'POST',
@@ -88,14 +89,8 @@
               password: this.password
             })
           });
-
-          if (!res.ok) {
-            return alert('Login failed');
-          }
-
+          if (!res.ok) return alert('Login failed');
           const user = await res.json();
-
-          // redirect by role
           if (user.role === 'owner') {
             window.location.href = '/owner-dashboard.html';
           } else {
@@ -103,8 +98,9 @@
           }
         },
 
-        async loadAllDogs(){
-          const res = await fetch('/api/all-dogs');
+        // new: fetch all dogs, then attach a random Dog CEO image to each
+        async loadAllDogs() {
+          const res  = await fetch('/api/all-dogs');
           const list = await res.json();
           const withPhotos = await Promise.all(
             list.map(async dog => {
@@ -116,15 +112,12 @@
           this.dogs = withPhotos;
         }
       },
-
-      mounted(){
-        this.loadAllDogs();
+      mounted() {
+        this.loadAllDogs();  // will run on page load
       }
-
     }).mount('#app');
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
