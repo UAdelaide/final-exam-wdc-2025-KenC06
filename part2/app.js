@@ -8,7 +8,11 @@ const app = express();
 // session
 app.use(session({
     secret
-
+    resave: false,
+  saveUninitialized: false,
+  cookie: {
+    // secure: true, // only if you're running HTTPS
+    maxAge: 1000 * 60 * 60 // 1 hour
 }));
 
 // Middleware
