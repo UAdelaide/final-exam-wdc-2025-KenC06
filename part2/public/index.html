@@ -75,7 +75,7 @@
           message: 'Welcome to the Dog Walking Service!',
           email: '',
           password: '',
-          dogs: [] 
+          dogs: []
         };
       },
       methods: {
@@ -100,7 +100,7 @@
 
         // new fetch all dogs then give it a random image
         async loadAllDogs() {
-          const res  = await fetch('/api/all-dogs');
+          const res  = await fetch('/api/allDogs');
           const list = await res.json();
           const withPhotos = await Promise.all(
             list.map(async dog => {
