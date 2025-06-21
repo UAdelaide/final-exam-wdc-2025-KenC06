@@ -1,28 +1,35 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-require('dotenv').config();
+const SESSION_SECRET = 'forsession';
 
+require('dotenv').config();
 const app = express();
 
-// session middle ware
+// session
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'forsession',
+    secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 }
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 // 1 hour
+  }
 }));
 
+// Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
-// routes
+// Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
+const dogRoutes = require('./routes/dogRoutes');
 const allDogsRouter = require('../part1/routes/dog');
 
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/all-dogs', allDogsRouter);
+app.use('/api/dogs', dogRoutes);
+app.use('/api/dog')
 
+// Export the app instead of listening here
 module.exports = app;
