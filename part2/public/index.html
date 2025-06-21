@@ -41,7 +41,8 @@
             method: 'POST',
             header: { 'Content-Type': 'application.json'},
             body: JSON.stringify({email: this.email, password: this.password})
-           })
+           });
+           if(!res.ok) return alert('Login failed')
         }
       }
 
